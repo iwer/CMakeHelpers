@@ -3,6 +3,8 @@
 # C++ unit testing framework, enabling FIND_PACKAGE(UnitTestPlusPlus) to work. 
 #
 
+SET(unittestplusplus_DIR "" CACHE PATH "Root path of UnitTest++")
+
 FIND_PATH(UnitTestPlusPlus_INCLUDE_DIR NAMES unittest++/UnitTest++.h)
 MARK_AS_ADVANCED(UnitTestPlusPlus_INCLUDE_DIR)
 

@@ -3,7 +3,7 @@
 # enabling FIND_PACKAGE(Dude) to work.
 #
 
-SET(dude_DIR /home/elresidente/Develop/Repository/libdude)
+SET(dude_DIR "" CACHE PATH "Root path of libdude")
 FIND_PATH(Dude_INCLUDE_DIR NAMES dude/dude.h
         HINTS ${dude_DIR}/include)
 MARK_AS_ADVANCED(Dude_INCLUDE_DIR)
