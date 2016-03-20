@@ -3,7 +3,8 @@ if(WIN32)
 endif()
 set(Boost_ADDITIONAL_VERSIONS "1.47" "1.47.0" "1.60" "1.60.0")
 find_package(Boost COMPONENTS "chrono" "date_time" "filesystem" "graph" "iostreams" "program_options" "regex" "serialization" "signals" "system" "thread" "wserialization" REQUIRED)
-#LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
+link_directories(${Boost_LIBRARY_DIRS})
+
 add_library(boost-datetime STATIC IMPORTED)
 set_property(TARGET boost-datetime PROPERTY
     INTERFACE_INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIRS})

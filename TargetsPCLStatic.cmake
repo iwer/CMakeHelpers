@@ -1,11 +1,13 @@
 find_package(PCL 1.7 REQUIRED)
+link_directories(${PCL_LIBRARY_DIR})
+
 add_library(pcl-common STATIC IMPORTED)
 set_property(TARGET pcl-common PROPERTY
     INTERFACE_INCLUDE_DIRECTORIES ${PCL_INCLUDE_DIRS})
 set_property(TARGET pcl-common PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-common PROPERTY 
-	IMPORTED_LOCATION ${PCL_COMMON_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_COMMON_LIBRARY})
 
 add_library(pcl-octree STATIC IMPORTED)
 set_property(TARGET pcl-octree PROPERTY
@@ -13,7 +15,7 @@ set_property(TARGET pcl-octree PROPERTY
 set_property(TARGET pcl-octree PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-octree PROPERTY 
-	IMPORTED_LOCATION ${PCL_OCTREE_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_OCTREE_LIBRARY})
 
 add_library(pcl-io STATIC IMPORTED)
 set_property(TARGET pcl-io PROPERTY
@@ -21,7 +23,7 @@ set_property(TARGET pcl-io PROPERTY
 set_property(TARGET pcl-io PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-io PROPERTY 
-	IMPORTED_LOCATION ${PCL_IO_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_IO_LIBRARY})
 
 add_library(pcl-kdtree STATIC IMPORTED)
 set_property(TARGET pcl-kdtree PROPERTY
@@ -29,7 +31,7 @@ set_property(TARGET pcl-kdtree PROPERTY
 set_property(TARGET pcl-kdtree PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-kdtree PROPERTY 
-	IMPORTED_LOCATION ${PCL_KDTREE_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_KDTREE_LIBRARY})
 
 add_library(pcl-search STATIC IMPORTED)
 set_property(TARGET pcl-search PROPERTY
@@ -37,7 +39,7 @@ set_property(TARGET pcl-search PROPERTY
 set_property(TARGET pcl-search PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-search PROPERTY 
-	IMPORTED_LOCATION ${PCL_SEARCH_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_SEARCH_LIBRARY})
 	
 add_library(pcl-sample-consensus STATIC IMPORTED)
 set_property(TARGET pcl-sample-consensus PROPERTY
@@ -45,7 +47,7 @@ set_property(TARGET pcl-sample-consensus PROPERTY
 set_property(TARGET pcl-sample-consensus PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-sample-consensus PROPERTY 
-	IMPORTED_LOCATION ${PCL_SAMPLE_CONSENSUS_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_SAMPLE_CONSENSUS_LIBRARY})
 
 add_library(pcl-filters STATIC IMPORTED)
 set_property(TARGET pcl-filters PROPERTY
@@ -53,7 +55,7 @@ set_property(TARGET pcl-filters PROPERTY
 set_property(TARGET pcl-filters PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-filters PROPERTY 
-	IMPORTED_LOCATION ${PCL_FILTERS_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_FILTERS_LIBRARY})
 
 add_library(pcl-2d STATIC IMPORTED)
 set_property(TARGET pcl-2d PROPERTY
@@ -61,15 +63,15 @@ set_property(TARGET pcl-2d PROPERTY
 set_property(TARGET pcl-2d PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-2d PROPERTY 
-	IMPORTED_LOCATION ${PCL_2D_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_2D_LIBRARY})
 
-add_library(pcl-geometry STATIC IMPORTED)
-set_property(TARGET pcl-geometry PROPERTY
-    INTERFACE_INCLUDE_DIRECTORIES ${PCL_INCLUDE_DIRS})
-set_property(TARGET pcl-geometry PROPERTY
-	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
-set_property(TARGET pcl-geometry PROPERTY 
-	IMPORTED_LOCATION ${PCL_GEOMETRY_LIBRARIES})
+#add_library(pcl-geometry STATIC IMPORTED)
+#set_property(TARGET pcl-geometry PROPERTY
+#    INTERFACE_INCLUDE_DIRECTORIES ${PCL_INCLUDE_DIRS})
+#set_property(TARGET pcl-geometry PROPERTY
+#	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
+#set_property(TARGET pcl-geometry PROPERTY 
+#	IMPORTED_LOCATION ${PCL_GEOMETRY_LIBRARY})
 
 add_library(pcl-features STATIC IMPORTED)
 set_property(TARGET pcl-features PROPERTY
@@ -77,7 +79,7 @@ set_property(TARGET pcl-features PROPERTY
 set_property(TARGET pcl-features PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-features PROPERTY 
-	IMPORTED_LOCATION ${PCL_FEATURES_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_FEATURES_LIBRARY})
 
 add_library(pcl-ml STATIC IMPORTED)
 set_property(TARGET pcl-ml PROPERTY
@@ -85,7 +87,7 @@ set_property(TARGET pcl-ml PROPERTY
 set_property(TARGET pcl-ml PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-ml PROPERTY 
-	IMPORTED_LOCATION ${PCL_ML_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_ML_LIBRARY})
 
 add_library(pcl-segmentation STATIC IMPORTED)
 set_property(TARGET pcl-segmentation PROPERTY
@@ -93,7 +95,7 @@ set_property(TARGET pcl-segmentation PROPERTY
 set_property(TARGET pcl-segmentation PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-segmentation PROPERTY 
-	IMPORTED_LOCATION ${PCL_SEGMENTATION_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_SEGMENTATION_LIBRARY})
 
 add_library(pcl-visualization STATIC IMPORTED)
 set_property(TARGET pcl-visualization PROPERTY
@@ -101,7 +103,7 @@ set_property(TARGET pcl-visualization PROPERTY
 set_property(TARGET pcl-visualization PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-visualization PROPERTY 
-	IMPORTED_LOCATION ${PCL_VISUALIZATION_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_VISUALIZATION_LIBRARY})
 
 add_library(pcl-surface STATIC IMPORTED)
 set_property(TARGET pcl-surface PROPERTY
@@ -109,7 +111,7 @@ set_property(TARGET pcl-surface PROPERTY
 set_property(TARGET pcl-surface PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-surface PROPERTY 
-	IMPORTED_LOCATION ${PCL_SURFACE_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_SURFACE_LIBRARY})
 
 add_library(pcl-registration STATIC IMPORTED)
 set_property(TARGET pcl-registration PROPERTY
@@ -117,7 +119,7 @@ set_property(TARGET pcl-registration PROPERTY
 set_property(TARGET pcl-registration PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-registration PROPERTY 
-	IMPORTED_LOCATION ${PCL_REGISTRATION_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_REGISTRATION_LIBRARY})
 
 add_library(pcl-keypoints STATIC IMPORTED)
 set_property(TARGET pcl-keypoints PROPERTY
@@ -125,7 +127,7 @@ set_property(TARGET pcl-keypoints PROPERTY
 set_property(TARGET pcl-keypoints PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-keypoints PROPERTY 
-	IMPORTED_LOCATION ${PCL_KEYPOINTS_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_KEYPOINTS_LIBRARY})
 
 add_library(pcl-tracking STATIC IMPORTED)
 set_property(TARGET pcl-tracking PROPERTY
@@ -133,7 +135,7 @@ set_property(TARGET pcl-tracking PROPERTY
 set_property(TARGET pcl-tracking PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-tracking PROPERTY 
-	IMPORTED_LOCATION ${PCL_TRACKING_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_TRACKING_LIBRARY})
 
 add_library(pcl-recognition STATIC IMPORTED)
 set_property(TARGET pcl-recognition PROPERTY
@@ -141,7 +143,7 @@ set_property(TARGET pcl-recognition PROPERTY
 set_property(TARGET pcl-recognition PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-recognition PROPERTY 
-	IMPORTED_LOCATION ${PCL_RECOGNITION_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_RECOGNITION_LIBRARY})
 
 add_library(pcl-stereo STATIC IMPORTED)
 set_property(TARGET pcl-stereo PROPERTY
@@ -149,7 +151,7 @@ set_property(TARGET pcl-stereo PROPERTY
 set_property(TARGET pcl-stereo PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-stereo PROPERTY 
-	IMPORTED_LOCATION ${PCL_STEREO_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_STEREO_LIBRARY})
 
 add_library(pcl-outofcore STATIC IMPORTED)
 set_property(TARGET pcl-outofcore PROPERTY
@@ -157,7 +159,7 @@ set_property(TARGET pcl-outofcore PROPERTY
 set_property(TARGET pcl-outofcore PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-outofcore PROPERTY 
-	IMPORTED_LOCATION ${PCL_OUTOFCORE_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_OUTOFCORE_LIBRARY})
 	
 add_library(pcl-people STATIC IMPORTED)
 set_property(TARGET pcl-people PROPERTY
@@ -165,7 +167,7 @@ set_property(TARGET pcl-people PROPERTY
 set_property(TARGET pcl-people PROPERTY
 	INTERFACE_COMPILE_DEFINITIONS ${PCL_DEFINITIONS})
 set_property(TARGET pcl-people PROPERTY 
-	IMPORTED_LOCATION ${PCL_PEOPLE_LIBRARIES})
+	IMPORTED_LOCATION ${PCL_PEOPLE_LIBRARY})
 	
 
 
