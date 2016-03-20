@@ -24,6 +24,7 @@ endif()
 
 find_package(OpenGL)
 
+if(NOT TARGET boost-filesystem)
 add_library(boost-filesystem STATIC IMPORTED)
 set_property(TARGET boost-filesystem PROPERTY
 	INTERFACE_INCLUDE_DIRECTORIES ${openFrameworks_DIR}/libs/boost/include)
@@ -31,7 +32,9 @@ set_property(TARGET boost-filesystem PROPERTY
 	IMPORTED_LOCATION_RELEASE ${openFrameworks_DIR}/libs/boost/lib/${PLATFORM}/libboost_filesystem-vc140-mt-1_58.lib)
 set_property(TARGET boost-filesystem PROPERTY
 	IMPORTED_LOCATION_DEBUG ${openFrameworks_DIR}/libs/boost/lib/${PLATFORM}/libboost_filesystem-vc140-mt-gd-1_58.lib)
-	
+endif()
+
+if(NOT TARGET boost-system)
 add_library(boost-system STATIC IMPORTED)
 set_property(TARGET boost-system PROPERTY
 	INTERFACE_INCLUDE_DIRECTORIES ${openFrameworks_DIR}/libs/boost/include)
@@ -39,6 +42,7 @@ set_property(TARGET boost-system PROPERTY
 	IMPORTED_LOCATION_RELEASE ${openFrameworks_DIR}/libs/boost/lib/${PLATFORM}/libboost_system-vc140-mt-1_58.lib)
 set_property(TARGET boost-system PROPERTY
 	IMPORTED_LOCATION_DEBUG ${openFrameworks_DIR}/libs/boost/lib/${PLATFORM}/libboost_system-vc140-mt-gd-1_58.lib)
+endif()
 
 	
 add_library(cairo STATIC IMPORTED)
