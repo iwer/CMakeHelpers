@@ -283,6 +283,11 @@ set_property(TARGET videoinput PROPERTY
 set_property(TARGET videoinput PROPERTY
 	IMPORTED_LOCATION_DEBUG ${openFrameworks_DIR}/libs/videoInput/lib/${PLATFORM}/videoInputD.lib)
 
+add_library(json INTERFACE IMPORTED)
+set_property(TARGET json PROPERTY
+	INTERFACE_INCLUDE_DIRECTORIES ${openFrameworks_DIR}/libs/json/include)
+
+	
 	
 SET (openFrameworks_SRCS 
 	${openFrameworks_DIR}/libs/openFrameworks/3d/of3dPrimitives.cpp
@@ -440,8 +445,9 @@ target_link_libraries(openFrameworks
 	pocozip
 	rtaudio
 	tess
-	utf8
 	videoinput
+	utf8
+	json
 	winmm
 	Crypt32
 	ws2_32)
