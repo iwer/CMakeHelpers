@@ -1,4 +1,4 @@
-find_package(PCL 1.7 REQUIRED)
+find_package(PCL 1.8 REQUIRED)
 link_directories(${PCL_LIBRARY_DIR})
 
 add_library(pcl-common STATIC IMPORTED)
