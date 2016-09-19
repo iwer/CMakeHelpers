@@ -283,9 +283,9 @@ set_property(TARGET videoinput PROPERTY
 set_property(TARGET videoinput PROPERTY
 	IMPORTED_LOCATION_DEBUG ${openFrameworks_DIR}/libs/videoInput/lib/${PLATFORM}/videoInputD.lib)
 
-add_library(json INTERFACE IMPORTED)
-set_property(TARGET json PROPERTY
-	INTERFACE_INCLUDE_DIRECTORIES ${openFrameworks_DIR}/libs/json/include)
+#add_library(json INTERFACE IMPORTED)
+#set_property(TARGET json PROPERTY
+#	INTERFACE_INCLUDE_DIRECTORIES ${openFrameworks_DIR}/libs/json/include)
 
 	
 	
@@ -447,7 +447,7 @@ target_link_libraries(openFrameworks
 	tess
 	videoinput
 	utf8
-	json
+#	json
 	winmm
 	Crypt32
 	ws2_32)
