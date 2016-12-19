@@ -354,13 +354,14 @@ if (${PLATFORM} MATCHES "linux")
     set_property(TARGET openssl PROPERTY
             INTERFACE_LINK_LIBRARIES ${OSSL_LIBRARIES})
 
-    pkg_search_module(GLFW3 REQUIRED glfw3)
-    message(STATUS "Found glfw3: ${GLFW3_INCLUDE_DIRS} ${GLFW3_LIBRARIES}")
-    add_library(glfw3 INTERFACE IMPORTED)
-    set_property(TARGET glfw3 PROPERTY
-            INTERFACE_INCLUDE_DIRECTORIES ${GLFW3_INCLUDE_DIRS})
-    set_property(TARGET glfw3 PROPERTY
-            INTERFACE_LINK_LIBRARIES ${GLFW3_LIBRARIES})
+    # glfw3 only works with included version
+    #pkg_search_module(GLFW3 REQUIRED glfw3)
+    #message(STATUS "Found glfw3: ${GLFW3_INCLUDE_DIRS} ${GLFW3_LIBRARIES}")
+    #add_library(glfw3 INTERFACE IMPORTED)
+    #set_property(TARGET glfw3 PROPERTY
+    #        INTERFACE_INCLUDE_DIRECTORIES ${GLFW3_INCLUDE_DIRS})
+    #set_property(TARGET glfw3 PROPERTY
+    #        INTERFACE_LINK_LIBRARIES ${GLFW3_LIBRARIES})
 
     pkg_search_module(RtAudio REQUIRED rtaudio)
     message(STATUS "Found rtaudio: ${RtAudio_INCLUDE_DIRS} ${RtAudio_LIBRARIES} ${RtAudio_DEFINITIONS}")
