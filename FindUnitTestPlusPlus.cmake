@@ -2,8 +2,9 @@
 # This CMake Module locates the UnitTest++ (http://unittest-cpp.sourceforge.net/)
 # C++ unit testing framework, enabling FIND_PACKAGE(UnitTestPlusPlus) to work. 
 #
-
-SET(unittestplusplus_DIR "" CACHE PATH "Root path of UnitTest++")
+if(MSVC)
+    SET(unittestplusplus_DIR "" CACHE PATH "Root path of UnitTest++")
+endif(MSVC)
 
 FIND_PATH(UnitTestPlusPlus_INCLUDE_DIR NAMES unittest++/UnitTest++.h
 	HINTS ${unittestplusplus_DIR}/include)
@@ -13,12 +14,19 @@ FIND_LIBRARY(UnitTestPlusPlus_LIBRARY NAMES UnitTest++
 	HINTS ${unittestplusplus_DIR}/lib)
 MARK_AS_ADVANCED(UnitTestPlusPlus_LIBRARY)
 
-FIND_LIBRARY(UnitTestPlusPlus_LIBRARY_DEBUG NAMES UnitTest++d
-	HINTS ${unittestplusplus_DIR}/lib)
-MARK_AS_ADVANCED(UnitTestPlusPlus_LIBRARY_DEBUG)
+if(MSVC)
+    FIND_LIBRARY(UnitTestPlusPlus_LIBRARY_DEBUG NAMES UnitTest++d
+	    HINTS ${unittestplusplus_DIR}/lib)
+    MARK_AS_ADVANCED(UnitTestPlusPlus_LIBRARY_DEBUG)
+else()
+    FIND_LIBRARY(UnitTestPlusPlus_LIBRARY_DEBUG NAMES UnitTest++
+            HINTS ${unittestplusplus_DIR}/lib)
+    MARK_AS_ADVANCED(UnitTestPlusPlus_LIBRARY_DEBUG)
+endif(MSVC)
 
 INCLUDE(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(UnitTestPlusPlus DEFAULT_MSG UnitTestPlusPlus_LIBRARY UnitTestPlusPlus_LIBRARY_DEBUG UnitTestPlusPlus_INCLUDE_DIR)
+
 
 IF ("${UnitTestPlusPlus_INCLUDE_DIR}" MATCHES "NOTFOUND")
     SET (UnitTestPlusPlus_LIBRARY)
