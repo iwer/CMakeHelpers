@@ -1,5 +1,7 @@
 # 
-# increment build-number post-build
+# increment build-number pre-build
+#
+# when "last-buildno" equals "build-number", this script increments the value of "build-number".
 #
 # call like:
 #
@@ -23,10 +25,14 @@ if(UNIX)
 	set(CAT_EXE cat)
 endif(UNIX)
 
-# check if build number file exists and create if not
+# check if build number files exists and create if not
 if(EXISTS ${VERFILE})
 else()
 	file(WRITE ${VERFILE} "1")
+endif()
+if(EXISTS ${LASTVERFILE})
+else()
+	file(WRITE ${LASTVERFILE} "0")
 endif()
 
 # get current build number from file

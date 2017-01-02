@@ -1,16 +1,20 @@
 # 
-# Generates version file with build number.
+# Generates version file with build number (needs increment_version.cmake).
+#
+# maintains file "build-number" which increments every build. Generates a header file version.h from 
+# a .h.in.cmake file when "last-buildno" is smaller than "build-number". "last-buildno" gets updated in that 
+# case with the value of "build-number". 
 # 
 # Call like:
 # 
 # file(TO_NATIVE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build-number BUILDNO_FILE)
 # file(TO_NATIVE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/last-buildno LAST_BUILDNO_FILE)
 # 
-# file(TO_NATIVE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include/dude/version.h.in.cmake CONFIG_FILE)
-# file(TO_NATIVE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include/dude/version.h VERSION_HEADER)
+# file(TO_NATIVE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include/myapp/version.h.in.cmake CONFIG_FILE)
+# file(TO_NATIVE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include/myapp/version.h VERSION_HEADER)
 # 
 # add_custom_target(
-# 	libdude_version
+# 	myapp_version
 # 	${CMAKE_COMMAND} -D SRC=${CONFIG_FILE}
 # 					 -D DST=${VERSION_HEADER}
 # 					 -D VERFILE=${BUILDNO_FILE}
@@ -34,10 +38,14 @@ if(UNIX)
 	set(CAT_EXE cat)
 endif(UNIX)
 
-# check if build number file exists and create if not
+# check if build number files exists and create if not
 if(EXISTS ${VERFILE})
 else()
 	file(WRITE ${VERFILE} "1")
+endif()
+if(EXISTS ${LASTVERFILE})
+else()
+	file(WRITE ${LASTVERFILE} "0")
 endif()
 
 # determine current build number
