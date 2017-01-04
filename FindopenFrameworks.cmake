@@ -554,11 +554,20 @@ if (${PLATFORM} MATCHES "vs")
     set(platform_spec_SRCS
             ${openFrameworks_DIR}/libs/openFrameworks/video/ofDirectShowGrabber.cpp
             ${openFrameworks_DIR}/libs/openFrameworks/video/ofDirectShowPlayer.cpp
-        	${openFrameworks_DIR}/libs/openFrameworks/video/ofQtUtils.cpp
-        	${openFrameworks_DIR}/libs/openFrameworks/video/ofQuickTimeGrabber.cpp
-        	${openFrameworks_DIR}/libs/openFrameworks/video/ofQuickTimePlayer.cpp
+#        	${openFrameworks_DIR}/libs/openFrameworks/video/ofQtUtils.cpp
+#        	${openFrameworks_DIR}/libs/openFrameworks/video/ofQuickTimeGrabber.cpp
+#        	${openFrameworks_DIR}/libs/openFrameworks/video/ofQuickTimePlayer.cpp
             )
 endif (${PLATFORM} MATCHES "vs")
+
+if (${PLATFORM} MATCHES "linux")
+    set(platform_spec_SRCS
+        ${openFrameworks_DIR}/libs/openFrameworks/video/ofGstUtils.cpp
+        ${openFrameworks_DIR}/libs/openFrameworks/video/ofGstVideoGrabber.cpp
+        ${openFrameworks_DIR}/libs/openFrameworks/video/ofGstVideoPlayer.cpp
+		)
+endif (${PLATFORM} MATCHES "linux")
+
 
 SET(openFrameworks_SRCS
         ${openFrameworks_DIR}/libs/openFrameworks/3d/of3dPrimitives.cpp
@@ -626,9 +635,6 @@ SET(openFrameworks_SRCS
         ${openFrameworks_DIR}/libs/openFrameworks/utils/ofURLFileLoader.cpp
         ${openFrameworks_DIR}/libs/openFrameworks/utils/ofUtils.cpp
         ${openFrameworks_DIR}/libs/openFrameworks/utils/ofXml.cpp
-        ${openFrameworks_DIR}/libs/openFrameworks/video/ofGstUtils.cpp
-        ${openFrameworks_DIR}/libs/openFrameworks/video/ofGstVideoGrabber.cpp
-        ${openFrameworks_DIR}/libs/openFrameworks/video/ofGstVideoPlayer.cpp
         ${openFrameworks_DIR}/libs/openFrameworks/video/ofVideoGrabber.cpp
         ${openFrameworks_DIR}/libs/openFrameworks/video/ofVideoPlayer.cpp
         ${platform_spec_SRCS}
@@ -700,21 +706,21 @@ target_compile_features(openFrameworks PUBLIC
 
 if (${PLATFORM} MATCHES "vs")
     set(platform_libs
-        	png
+			videoinput
+        	#quicktime
+			png
         	pixman
             freetype
             winmm
             Crypt32
             ws2_32
-            pocopdf
+            #pocopdf
             eay
             )
 endif (${PLATFORM} MATCHES "vs")
 
 if (${PLATFORM} MATCHES "linux")
     set(platform_libs
-            glut
-            glfw
             X11            
             Xrandr
             Xxf86vm
@@ -722,37 +728,14 @@ if (${PLATFORM} MATCHES "linux")
             Xcursor
             dl
             pthread
-            freeimage
-            boost-system
-            boost-filesystem
-            poconetssl
-            poconet
-            pococrypto
-            #pocomongodb
-            #pocodatasql
-            #pocodata
-            pocoutil
-            pocojson
-            pocoxml
-            #pocozip
-            pocofoundation
-            fmodex
-            tess
-            utf8
-            libcairo
             zlib
-            gstreamer
             libudev
             libfontconfig
             #freetype2
             libsndfile
             openAL
-            openssl
             Xinerama
-            rtaudio
-            ${OPENGL_gl_LIBRARY}
-            glu
-            glew
+			gstreamer
             gtk
             mpg123
             kiss            
@@ -760,13 +743,33 @@ if (${PLATFORM} MATCHES "linux")
 endif (${PLATFORM} MATCHES "linux")
 
 target_link_libraries(openFrameworks
-        
-        #
-        #	videoinput
-
-        #	json
         ${platform_libs}
-        )
+        glew
+        glu
+		glut
+		glfw
+        tess
+        utf8
+		boost-system
+		boost-filesystem
+		freeimage
+		fmodex
+        rtaudio
+		libcairo
+		pocofoundation
+		poconetssl
+		poconet
+		pococrypto
+		#pocomongodb
+		#pocodatasql
+		#pocodata
+		pocoutil
+		pocojson
+		pocoxml
+		#pocozip
+        openssl
+        ${OPENGL_gl_LIBRARY}
+		)
 
 
 
