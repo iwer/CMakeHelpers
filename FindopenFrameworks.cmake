@@ -4,6 +4,7 @@
 #
 
 SET(openFrameworks_DIR "" CACHE PATH "Root path of openFrameworks")
+set(LIB_PREFIX)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     if (${CMAKE_SIZEOF_VOID_P} EQUAL 8)
@@ -528,6 +529,7 @@ set_property(TARGET tess PROPERTY
 set_property(TARGET tess PROPERTY
         IMPORTED_LOCATION ${openFrameworks_DIR}/libs/tess2/lib/${PLATFORM}/${LIB_PREFIX}tess2.${LIB_EXTENS})
 
+### UTF8 ##################################################################################################################################
 add_library(utf8 INTERFACE IMPORTED)
 set_property(TARGET utf8 PROPERTY
         INTERFACE_INCLUDE_DIRECTORIES ${openFrameworks_DIR}/libs/utf8cpp/include)
@@ -715,7 +717,7 @@ if (${PLATFORM} MATCHES "linux")
     set(platform_libs
             glut
             glfw
-            X11            
+            X11
             Xrandr
             Xxf86vm
             Xi
@@ -768,8 +770,36 @@ target_link_libraries(openFrameworks
         ${platform_libs}
         )
 
+#FIND_LIBRARY(openFrameworks_LIBRARY_DEBUG NAMES ${OF_LIB_NAME_DEBUG}
+#        HINTS ${openFrameworks_DIR}/libs/openFrameworksCompiled/lib/${PLATFORM})
+#MARK_AS_ADVANCED(openFrameworks_LIBRARY_DEBUG)
 
 
+#if(${PLATFORM} MATCHES "vs/*")
+#set(openFrameworks_DEFINITIONS 
+#        "-DWIN32" 
+#        "-DNDEBUG" 
+#        "-D_CONSOLE" 
+#        "-DDISABLE_SOME_FLOATING_POINT"
+#        )
+#set(openFrameworks_DEFINITIONS_DEBUG 
+#        "-DWIN32" 
+#        "-D_DEBUG" 
+#        "-D_CONSOLE" 
+#        "-DDISABLE_SOME_FLOATING_POINT"
+#        )
+#elseif(${PLATFORM} MATCHES "linux*")
+#set(openFrameworks_DEFINITIONS 
+#        "-DNDEBUG" 
+#        "-D_CONSOLE" 
+#        "-DDISABLE_SOME_FLOATING_POINT"
+#        )
+#set(openFrameworks_DEFINITIONS_DEBUG 
+#        "-D_DEBUG" 
+#        "-D_CONSOLE" 
+#        "-DDISABLE_SOME_FLOATING_POINT"
+#        )
+#endif()
 
 if (${PLATFORM} MATCHES "vs")
     set(openFrameworks_SHARED_LIBS

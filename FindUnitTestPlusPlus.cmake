@@ -6,6 +6,8 @@ if(MSVC)
     SET(unittestplusplus_DIR "" CACHE PATH "Root path of UnitTest++")
 endif(MSVC)
 
+SET(unittestplusplus_DIR "/usr/lib" CACHE PATH "Root path of UnitTest++")
+
 FIND_PATH(UnitTestPlusPlus_INCLUDE_DIR NAMES unittest++/UnitTest++.h
 	HINTS ${unittestplusplus_DIR}/include)
 MARK_AS_ADVANCED(UnitTestPlusPlus_INCLUDE_DIR)
@@ -14,19 +16,15 @@ FIND_LIBRARY(UnitTestPlusPlus_LIBRARY NAMES UnitTest++
 	HINTS ${unittestplusplus_DIR}/lib)
 MARK_AS_ADVANCED(UnitTestPlusPlus_LIBRARY)
 
-if(MSVC)
-    FIND_LIBRARY(UnitTestPlusPlus_LIBRARY_DEBUG NAMES UnitTest++d
-	    HINTS ${unittestplusplus_DIR}/lib)
-    MARK_AS_ADVANCED(UnitTestPlusPlus_LIBRARY_DEBUG)
-else()
-    FIND_LIBRARY(UnitTestPlusPlus_LIBRARY_DEBUG NAMES UnitTest++
-            HINTS ${unittestplusplus_DIR}/lib)
-    MARK_AS_ADVANCED(UnitTestPlusPlus_LIBRARY_DEBUG)
-endif(MSVC)
-
 INCLUDE(FindPackageHandleStandardArgs)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(UnitTestPlusPlus DEFAULT_MSG UnitTestPlusPlus_LIBRARY UnitTestPlusPlus_LIBRARY_DEBUG UnitTestPlusPlus_INCLUDE_DIR)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(UnitTestPlusPlus DEFAULT_MSG UnitTestPlusPlus_LIBRARY UnitTestPlusPlus_INCLUDE_DIR)
 
+if(WIN32)
+        FIND_LIBRARY(UnitTestPlusPlus_LIBRARY_DEBUG NAMES UnitTest++d
+	        HINTS ${unittestplusplus_DIR}/lib)
+        MARK_AS_ADVANCED(UnitTestPlusPlus_LIBRARY_DEBUG)
+        FIND_PACKAGE_HANDLE_STANDARD_ARGS(UnitTestPlusPlus DEFAULT_MSG UnitTestPlusPlus_LIBRARY_DEBUG)
+endif()
 
 IF ("${UnitTestPlusPlus_INCLUDE_DIR}" MATCHES "NOTFOUND")
     SET (UnitTestPlusPlus_LIBRARY)
