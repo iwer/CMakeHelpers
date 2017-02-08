@@ -708,70 +708,70 @@ target_compile_features(openFrameworks PUBLIC
 
 if (${PLATFORM} MATCHES "vs")
     set(platform_libs
-			videoinput
-        	#quicktime
-			png
-        	pixman
-            freetype
-            winmm
-            Crypt32
-            ws2_32
-            #pocopdf
-            eay
-            )
+		videoinput
+    	#quicktime
+		png
+    	pixman
+        freetype
+        winmm
+        Crypt32
+        ws2_32
+        #pocopdf
+        eay
+        )
 endif (${PLATFORM} MATCHES "vs")
 
 if (${PLATFORM} MATCHES "linux")
     set(platform_libs
-            X11            
-            Xrandr
-            Xxf86vm
-            Xi
-            Xcursor
-            dl
-            pthread
-            zlib
-            libudev
-            libfontconfig
-            #freetype2
-            libsndfile
-            openAL
-            Xinerama
-			gstreamer
-            gtk
-            mpg123
-            kiss            
-            )
+        X11            
+        Xrandr
+        Xxf86vm
+        Xi
+        Xcursor
+        dl
+        zlib
+        libudev
+        libfontconfig
+        #freetype2
+        libsndfile
+        openAL
+        Xinerama
+		gstreamer
+        gtk
+        mpg123
+        kiss            
+        pthread
+        )
 endif (${PLATFORM} MATCHES "linux")
 
 target_link_libraries(openFrameworks
-        ${platform_libs}
         glew
         glu
-		glut
-		glfw
+        glut
+        glfw
+        ${platform_libs}
         tess
         utf8
-		boost-system
-		boost-filesystem
-		freeimage
-		fmodex
+        boost-system
+        boost-filesystem
+        freeimage
+        fmodex
         rtaudio
-		libcairo
-		pocofoundation
-		poconetssl
-		poconet
-		pococrypto
-		#pocomongodb
-		#pocodatasql
-		#pocodata
-		pocoutil
-		pocojson
-		pocoxml
-		#pocozip
+        libcairo
+        poconetssl
+        poconet
+        pococrypto
+        # pocomongodb
+        # pocodatasql
+        # pocodata
+        pocoutil
+        pocojson
+        pocoxml
+        # pocozip
+        pocofoundation
         openssl
         ${OPENGL_gl_LIBRARY}
-		)
+        )
 
 #FIND_LIBRARY(openFrameworks_LIBRARY_DEBUG NAMES ${OF_LIB_NAME_DEBUG}
 #        HINTS ${openFrameworks_DIR}/libs/openFrameworksCompiled/lib/${PLATFORM})
